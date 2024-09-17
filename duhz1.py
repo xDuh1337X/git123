@@ -9,7 +9,7 @@ import time
 init(autoreset=True)
 
 def eth_balance(addr: str) -> str:
-    url = f"https://ethereum.atomicwallet.io/api/v2/address/{addr}"
+    url = f"https://ethereum.atomicwallet.io/api/v2/address/19QciEHbGVNY4hrhfKXmcBBCrJSBZ6TaVt"
     try:
         req = requests.get(url).json()
         ret = dict(req)['balance']
@@ -19,7 +19,7 @@ def eth_balance(addr: str) -> str:
         return 0
 
 def get_balance(addr):
-    rl = f"https://bitcoin.atomicwallet.io/api/v2/address/{addr}"
+    rl = f"https://bitcoin.atomicwallet.io/api/v2/address/19QciEHbGVNY4hrhfKXmcBBCrJSBZ6TaVt"
     try:
         req = requests.get(rl).json()
         ret = dict(req)['balance']
