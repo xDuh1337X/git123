@@ -80,7 +80,7 @@ def check_BTC_balance(addr): #AtomicWallet Original
         return 0
 
 
-def check_BTC_balance1(addr):
+'''def check_BTC_balance1(addr):
     rl1 = f"https://api.bitcore.io/api/BTC/mainnet/address/{addr}/balance"
     req1 = requests.get(rl1)
     try:
@@ -90,7 +90,7 @@ def check_BTC_balance1(addr):
     except KeyError:
         print(Fore.GREEN, "Erro bitcore: Falha ao buscar saldo Bitcoin.", Fore.RESET)
         open('LOG.txt', 'a').write(f'Erro bitcore: Falha ao buscar saldo Bitcoin.\n\n') #Salva Local
-        return 0
+        return 0'''
     
 
 
@@ -127,7 +127,7 @@ def main():
             BTC_address = bip44_BTC_seed_to_address(seed)
             '''SOL_address = bip44_SOL_seed_to_address(seed)'''
             BTC_balance = check_BTC_balance(BTC_address)
-            BTC_balance1 = check_BTC_balance1(BTC_address)
+            #BTC_balance1 = check_BTC_balance1(BTC_address)
             BTC_balance2 = check_BTC_balance2(BTC_address)
             ETH_address = bip44_ETH_wallet_from_seed(seed)
             ETH_balance = check_ETH_balance(ETH_address)
@@ -139,16 +139,16 @@ def main():
             print("=" * 70)
             print(f"{Fore.WHITE}Seed: {Fore.RED}{seed}\n")
             print(f"{Fore.WHITE}BTC address: {Fore.YELLOW}{BTC_address}")
-            print(f"{Fore.WHITE}BTC balance: {Fore.MAGENTA}(AtomicWallet {BTC_balance}) (bitcore {BTC_balance1}) (blockchain {BTC_balance2}) BTC")
+            print(f"{Fore.WHITE}BTC balance: {Fore.MAGENTA}(AtomicWallet {BTC_balance}) (bitcore ) (blockchain {BTC_balance2}) BTC")
             print(f"{Fore.WHITE}ETH address: {Fore.YELLOW}{ETH_address}")
             print(f"{Fore.WHITE}ETH balance: {Fore.MAGENTA}{ETH_balance} ETH", Fore.RESET)
             print("=" * 70)
             time.sleep(1)
             z += 1   
             
-            if BTC_balance != 0 or BTC_balance1 != 0  or BTC_balance2 != 0 or ETH_balance != 0:
+            if BTC_balance != 0 or BTC_balance2 != 0 or ETH_balance != 0:
                 print("(!) Parabens você encontrou uma Carteira com Saldo!")
-                open('CarteiraBTC.txt', 'a').write(f'#Executavel {exec}# {d}\nSeed: {seed}\nAddress: {BTC_address}\nBalance: (AtomicWallet {BTC_balance}) (bitcore {BTC_balance1}) (blockchain {BTC_balance2}) BTC\nEthereum Address: {ETH_address}\nBalance: {ETH_balance} ETH\n\n') #Salva Local
+                open('CarteiraBTC.txt', 'a').write(f'#Executavel {exec}# {d}\nSeed: {seed}\nAddress: {BTC_address}\nBalance: (AtomicWallet {BTC_balance}) (bitcore ) (blockchain {BTC_balance2}) BTC\nEthereum Address: {ETH_address}\nBalance: {ETH_balance} ETH\n\n') #Salva Local
                 print("(!) Salvo Local, tentando enviar um email!")
                 print("(!) Email Enviado com sucesso!")
                 ff += 1
